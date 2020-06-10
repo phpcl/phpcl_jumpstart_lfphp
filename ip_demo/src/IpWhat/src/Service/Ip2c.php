@@ -18,7 +18,7 @@ class Ip2c implements IpWhatInterface
 	 */
 	public function getMyIp() : IpInfo
 	{
-		if (isset($_SERVER['REMOTE_ADDR'])) {
+		if (isset($_SERVER['REMOTE_ADDR']) && $myIp = $_SERVER['REMOTE_ADDR']) {
 			$info = new IpInfo(strip_tags($myIp));
 		} else {
 			$info = new IpInfo($ip);

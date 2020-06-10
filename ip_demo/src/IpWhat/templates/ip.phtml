@@ -1,18 +1,24 @@
+<h1>IP Address Info</h1>
+<hr>
 <form method="post">
 	<div class="row">
 		<div class="col-md-6">
 			Enter IP Address
 		</div>
 		<div class="col-md-6">
-			<input type="text" name="ip" />
+			<input type="text" name="ip" placeholder="Other IP Address" />
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="submit" name="other" value="Get Info" />
+			<input type="submit" name="my" value="My IP" />
 		</div>
 		<div class="col-md-6">
-			<input type="submit" name="my" value="My IP" />
+			<input type="submit" name="other" value="Get Info" />
 		</div>
 	</div>
 </form>
+
+<h1>Results</h1>
+<hr>
+<pre><?= var_export($this->info); ?></pre>

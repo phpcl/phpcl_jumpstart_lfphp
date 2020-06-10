@@ -32,7 +32,7 @@ class IpHandler implements RequestHandlerInterface
 		// init vars
 		$info = new IpInfo();
 		// grab post params (if any)
-		if ($request->getMethod() == 'post') {
+		if (strtolower($request->getMethod()) == 'post') {
 			$params = $request->getParsedBody();
 			$ip = $params['ip'] ?? '';	// other IP address (optional)
 			$my = $params['my'] ?? '';	// button to get My Ipaddress
@@ -41,7 +41,6 @@ class IpHandler implements RequestHandlerInterface
 			} else {
 				$info = $this->service->getCountryForIp($ip);
 			}
-			echo __LINE__;
 		}
         return new HtmlResponse($this->renderer->render(
             'ip-what::ip',
