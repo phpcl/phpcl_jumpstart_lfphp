@@ -8,7 +8,7 @@ if [ -f /srv/jumpstart/ip_demo/composer.phar ]
 then
     php composer.phar self-update
 else
-    wget https://getcomposer.org/composer.phar
+    wget https://getcomposer.org/download/1.10.7/composer.phar
 fi
 if [ -f /srv/jumpstart/ip_demo/composer.lock ]
 then
