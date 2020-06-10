@@ -6,6 +6,6 @@
 FROM asclinux/linuxforphp-8.2-ultimate:7.4-nts
 
 # Init database + web server config
-COPY ./init.sh /tmp/init.sh
-RUN chmod +x /tmp/init.sh
-RUN /tmp/init.sh
+RUN git clone https://github.com/phpcl/phpcl_jumpstart_lfphp /srv/jumpstart
+RUN chmod +x /srv/jumpstart/docker/init.sh
+RUN /srv/jumpstart/docker/init.sh
