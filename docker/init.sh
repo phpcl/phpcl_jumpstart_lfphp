@@ -7,8 +7,12 @@ cd /srv/jumpstart/ip_demo
 if [ -f /srv/jumpstart/ip_demo/composer.phar ]
 then
     php composer.phar self-update
-elif
+else
     wget https://getcomposer.org/composer.phar
+fi
+if [ -f /srv/jumpstart/ip_demo/composer.lock ]
+then
+    rm /srv/jumpstart/ip_demo/composer.lock
 fi
 php composer.phar install
 echo "Restoring database ..."
@@ -22,9 +26,9 @@ mysql -uroot -v -e "SOURCE /srv/jumpstart/sample_data/jumpstart.sql;" jumpstart
 echo "Configuring Apache ... "
 if [ -f /srv/www ]
 then
-  rm -rf /srv/www
+  mv /srv/www /srv/www_old
 fi
-ln -s /srv/jumpstart/ip_demo/public /srv/www
+ln -s -v /srv/jumpstart/ip_demo/public /srv/www
 chown apache:apache /srv/www
 chown -R apache:apache /srv/jumpstart/ip_demo
 chmod -R 775 /srv/jumpstart/ip_demo
