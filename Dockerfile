@@ -10,4 +10,5 @@ RUN echo "Restoring application ..."
 RUN git clone https://github.com/phpcl/phpcl_jumpstart_lfphp /srv/jumpstart
 RUN chmod +x /srv/jumpstart/init.sh
 RUN /srv/jumpstart/init.sh
-CMD lfphp
+ENTRYPOINT ["/bin/lfphp"]
+CMD ["--mysql", "--phpfpm", "--apache"]
