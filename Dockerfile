@@ -1,14 +1,14 @@
-#
-# PHP-CL JumpStart LfPHP
-#
-
-# Pull base image.
 FROM asclinux/linuxforphp-8.2-ultimate:7.4-nts
-
-# Init database + web server config
-RUN echo "Restoring application ..."
+MAINTAINER doug.bierer@etista.com
 RUN git clone https://github.com/phpcl/phpcl_jumpstart_lfphp /srv/jumpstart
+RUN \
+  cd /srv && \
+  mv -f -v /srv/www /srv/www.OLD && \
+  ln -s -f -v /srv/jumpstart/ip_demo/public /srv/www
 RUN chmod +x /srv/jumpstart/init.sh
 RUN /srv/jumpstart/init.sh
+RUN chown apache:apache /srv/www
+RUN chown -R apache:apache /srv/jumpstart
+RUN chmod -R 775 /srv/jumpstart
 ENTRYPOINT ["/bin/lfphp"]
 CMD ["--mysql", "--phpfpm", "--apache"]
