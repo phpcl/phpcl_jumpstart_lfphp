@@ -1,9 +1,12 @@
 <?php
 $this->headLink()
-    ->prependStylesheet('https://use.fontawesome.com/releases/v5.13.0/css/all.css')
-    ->prependStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
-$this->inlineScript()
-    ->prependFile('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js');
+    ->appendStylesheet('https://use.fontawesome.com/releases/v5.13.0/css/all.css')
+    ->appendStylesheet('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')
+    ->appendStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css');
+$this->headScript()
+    ->appendFile('https://code.jquery.com/jquery-3.5.1.min.js')
+    ->appendFile('https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')
+    ->appendFile('https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js');
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,6 +18,7 @@ $this->inlineScript()
     <?=$this->headTitle('Linux for PHP')->setSeparator(' - ')->setAutoEscape(false)?>
     <?=$this->headMeta()?>
     <?=$this->headLink()?>
+    <?=$this->headScript()?>
     <style>
         body { padding-top: 70px; }
         .app { min-height: 100vh; }

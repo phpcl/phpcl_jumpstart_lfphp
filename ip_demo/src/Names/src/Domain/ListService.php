@@ -35,10 +35,8 @@ class ListService
 		$result = $this->usersTable->select();
 		foreach ($result as $row) {
 			$list[] = [
-				$row->title,
 				$row->first_name,
 				$row->middle_name,
-				$row->last_name,
 			];
 		}
 		return $list;
