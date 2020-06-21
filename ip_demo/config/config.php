@@ -12,6 +12,8 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Laminas\Db\ConfigProvider::class,
+    \Names\ConfigProvider::class,
     \IpWhat\ConfigProvider::class,
     \Laminas\HttpHandlerRunner\ConfigProvider::class,
     \Mezzio\LaminasView\ConfigProvider::class,

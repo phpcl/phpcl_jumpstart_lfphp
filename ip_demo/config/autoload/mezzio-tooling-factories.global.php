@@ -13,8 +13,6 @@ declare(strict_types=1);
 return [
     'dependencies' => [
         'factories' => [
-            IpWhat\Handler\IpHandler::class => IpWhat\Handler\IpHandlerFactory::class,
-            IpWhat\Service\Ip2c::class => IpWhat\Service\Ip2cFactory::class,
         ],
     ],
 ];

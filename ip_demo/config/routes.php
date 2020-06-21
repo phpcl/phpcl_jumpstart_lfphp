@@ -36,4 +36,5 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/', App\Handler\HomePageHandler::class, 'home');
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
     $app->route('/ip', IpWhat\Handler\IpHandler::class, ['GET','POST'], 'ipwhat');
+    $app->get('/names', Names\Handler\ListNamesHandler::class, 'names.list');
 };
