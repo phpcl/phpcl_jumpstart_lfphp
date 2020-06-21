@@ -24,7 +24,7 @@ class ListNamesHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
-        // Render and return a response:
+        // Delivers an HTML page that launches jQuery DataTables
         return new HtmlResponse($this->renderer->render('names::list-names', []));
     }
 }

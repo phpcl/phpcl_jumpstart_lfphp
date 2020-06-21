@@ -25,7 +25,7 @@ class ListService
         $this->usersTable = new TableGateway(self::USERS_TABLE_NAME, $adapter);
     }
 	/**
-	 * Returns JSON response with list of names
+	 * Returns JSON response with list of first and last names
 	 *
 	 * @return string $json
 	 */
@@ -36,7 +36,7 @@ class ListService
 		foreach ($result as $row) {
 			$list[] = [
 				$row->first_name,
-				$row->middle_name,
+				$row->last_name,
 			];
 		}
 		return $list;

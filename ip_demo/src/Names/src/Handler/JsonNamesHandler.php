@@ -27,8 +27,8 @@ class JsonNamesHandler implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request) : ResponseInterface
     {
+        // Render and return a response from AJAX request
         $names = $this->service->getNames();
-        // Render and return a response:
         return new JsonResponse(['data' => $names]);
     }
 }
