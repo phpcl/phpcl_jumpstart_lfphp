@@ -22,14 +22,14 @@ class ListService
     public function __construct(Adapter $adapter)
     {
         $this->adapter    = $adapter;
-        $this->usersTable = new TableGateway($adapter, self::USERS_TABLE_NAME);
+        $this->usersTable = new TableGateway(self::USERS_TABLE_NAME, $adapter);
     }
 	/**
 	 * Returns JSON response with list of names
 	 *
 	 * @return string $json
 	 */
-    public function listNames()
+    public function getNames()
     {
 		$list = [];
 		$result = $this->usersTable->select();

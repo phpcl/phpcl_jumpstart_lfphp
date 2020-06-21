@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Names;
 
-use Laminas\Db\Adapter\Adapter;
 /**
  * The configuration provider for the Names module
  *
@@ -35,11 +34,10 @@ class ConfigProvider
             'invokables' => [
             ],
             'factories'  => [
-				Domain\Adapter::class => function ($container) {
-					return new Adapter($container->get('db-config'));
-				}				
+				Domain\Adapter::class => Domain\ListAdapterFactory::class,
 				Domain\ListService::class => Domain\ListServiceFactory::class,
 				Handler\ListNamesHandler::class => Handler\ListNamesHandlerFactory::class,
+				Handler\JsonNamesHandler::class => Handler\JsonNamesHandlerFactory::class,
            ],
         ];
     }
