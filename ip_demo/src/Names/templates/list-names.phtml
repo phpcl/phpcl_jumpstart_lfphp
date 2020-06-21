@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
 <h1>List Names</h1>
 <table id="list-names">
 	<thead>
@@ -10,12 +9,17 @@
 		</tr>
 	</thead>
 </table>
-<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<?php
+$this->headLink()
+    ->prependStylesheet('https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css');
+$this->inlineScript()
+    ->prependFile('https://code.jquery.com/jquery-3.5.1.min.js')
+    ->prependFile('https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js');
+?>
 <script>
 $(document).ready(function() {
-    $('#list-names').DataTable(
-		"ajax": '/api/names'
-    );
+    $('#list-names').DataTable( {
+		'ajax': '/api/names'
+    });
 } );
 </script>
