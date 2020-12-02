@@ -1,0 +1,41 @@
+#
+# PHP-CL JumpStart: LfPHP
+# Demonstrates deploying a multi-stack using Drupal
+#
+
+# In order to use this, from the parent directory run this:
+# `php templates/generate_creds.php <SEC_CREDS_JSON_FILE> "templates" "DB_PASS,DRUPAL_ACCT_PWD"`
+# * passwords for the Drupal database + Drupal admin user will be auto-generated and 
+# * written back into security creds JSON file
+
+FROM asclinux/linuxforphp-8.2-ultimate:7.4-nts
+
+# Install Composer
+RUN \
+	mkdir /srv/drupal && \
+	cd /srv/drupal && \
+	wget -O composer.phar https://getcomposer.org/composer-stable.phar && \
+	php composer.phar self-update
+
+# Install Drupal
+RUN \
+	php composer.phar require drupal/console && \
+	vendor/bin/drupal site:install  standard  --langcode="%%LANGCODE%%" --db-type="%%DB_TYPE%%" --db-host="%%DB_HOST%%" --db-name="%%DB_NAME%%" --db-user="%%DB_USER%%" --db-pass="%%DB_PASS%%" --db-port="3306%%" --site-name="%%SITE_NAME%%" --site-mail="%%SITE_EMAIL%%" --account-name="%%DRUPAL_ACCT_NAME%%" --account-mail="%%DRUPAL_ACCT_EMAIL%%" --account-pass="%%DRUPAL_ACCT_PWD%%"
+
+# Install Drupal Theme
+RUN \
+	vendor/bin/drupal theme:download %%THEME_NAME%% %%THEME_VERSION%% && \
+	vendor/bin/drupal theme:install %%THEME_NAME%%
+
+# Install Drupal Commerce module
+RUN \
+	php composer.phar require "drupal/commerce"  && \
+	vendor/bin/drupal module:install commerce_product commerce_checkout commerce_cart
+
+# Install MailChimp Drupal module
+RUN \
+	php composer.phar require thinkshout/mailchimp-api-php && \
+	php composer.phar require 'drupal/mailchimp:^1.11' && \
+	php composer.phar require 'drupal/mailchimp_ecommerce:^1.6'
+
+CMD lfphp --mysql --phpfpm --apache

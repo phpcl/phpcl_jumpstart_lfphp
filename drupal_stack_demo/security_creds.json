@@ -1,0 +1,23 @@
+{
+    "Dockerfile": {
+		"THEME_NAME" : "bootstrap",
+		"THEME_VERSION" : "8.x-3.23",
+		"LANGCODE" : "en",
+		"DB_TYPE" : "mysql",
+		"DB_HOST" : "localhost",
+		"DB_NAME" : "drupal",
+		"DB_USER" : "dbadmin",
+		"DB_PASS" : "auto-generated",
+		"SITE_NAME" : "PHP-CL Drupal Stack Demo",
+		"SITE_EMAIL" : "info@etista.com",
+		"DRUPAL_ACCT_NAME" : "drupal_admin",
+		"DRUPAL_ACCT_EMAIL" : "info@etista.com",
+		"DRUPAL_ACCT_PWD" : "auto-generated"
+    },
+    "linuxforcomposer.json": {
+        "LFC_ACCOUNT": "ACCOUNT",
+        "LFC_USERNAME": "info@etista.com",
+        "LFC_TOKEN": "TOKEN",
+        "LFC_CONTAINER": "container_name"
+    }
+}
